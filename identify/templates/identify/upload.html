@@ -1,0 +1,12 @@
+
+<h1>Upload Audio File</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="audio" accept="audio/*" required>
+    <button type="submit">Upload</button>
+</form>
+
+{% if transcription %}
+    <h2>Transcription Result:</h2>
+    <p>{{ transcription }}</p>
+{% endif %}
