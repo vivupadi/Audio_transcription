@@ -4,39 +4,42 @@ from pydub import AudioSegment
 from pydub.playback import play
 import torchaudio
 import os
+import soundfile as sf
 
 #import requests
 #from django.conf import settings
 
-torchaudio.set_audio_backend("ffmpeg")
+torchaudio.set_audio_backend("soundfile")
 
 #mention FFMpeg path
 AudioSegment.converter = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffmpeg.exe"
 AudioSegment.ffprobe = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffprobe.exe"
 
 # Load Hugging Face model and processor
-MODEL_NAME = "facebook/wav2vec2-base-960h"
-processor = Wav2Vec2Processor.from_pretrained(MODEL_NAME)
-model = Wav2Vec2ForCTC.from_pretrained(MODEL_NAME)
+model_name = "facebook/wav2vec2-base-960h"
+processor = Wav2Vec2Processor.from_pretrained(model_name)
+model = Wav2Vec2ForCTC.from_pretrained(model_name)
 
+#audio transcription
 def transcribe_audio(file_path):
-    """
-    Transcribe audio using Hugging Face Wav2Vec2.
-    """
-    # Convert audio to WAV format
-    #aud = AudioSegment.converter
-    #audio = AudioSegment.from_file(file_path)
-    #audio = aud.from_file(file_path)
-    #wav_path = file_path.replace(".mp3", ".wav")
-    #audio.export(wav_path, format="wav")
-    waveform, rate = torchaudio.load(file_path)
 
-    # Load audio and resample
-    #waveform, rate = torchaudio.load(wav_path)
+    # load
+    #aud = AudioSegment.converter
+    audio = AudioSegment.from_file(file_path)
+    #audio = aud.from_file(file_path)
+    wav_path = file_path.replace(".ogg", ".wav")
+    audio.export(wav_path, format="wav")
+    #waveform, rate = torchaudio.load(file_path)
+
+    # resample
+    waveform, rate = sf.read(wav_path)
+
+    # Convert waveform to a PyTorch tensor
+    waveform = torch.tensor(waveform, dtype=torch.float32)
+    
     resampler = torchaudio.transforms.Resample(rate, 16000)
     waveform = resampler(waveform).squeeze()
 
-    # Process and transcribe
     inputs = processor(waveform, sampling_rate=16000, return_tensors="pt")
     with torch.no_grad():
         logits = model(inputs.input_values).logits
@@ -49,8 +52,6 @@ def transcribe_audio(file_path):
 
 """
 def transcribe_audio(file_path):
-    
-    #Transcribe audio using Hugging Face Wav2Vec2.
     
     api_url = "https://api-inference.huggingface.co/models/facebook/wav2vec2-base-960h"
     api_key = settings.huggingface_api_key  # Get API key from settings
