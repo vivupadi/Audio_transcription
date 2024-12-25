@@ -9,11 +9,11 @@ import soundfile as sf
 #import requests
 #from django.conf import settings
 
-torchaudio.set_audio_backend("soundfile")
+torchaudio.set_audio_backend("soundfile")  ##Soundfile WOrks for windows systems
 
 #mention FFMpeg path
-AudioSegment.converter = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffmpeg.exe"
-AudioSegment.ffprobe = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffprobe.exe"
+#AudioSegment.converter = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffmpeg.exe"
+#AudioSegment.ffprobe = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffprobe.exe"
 
 # Load Hugging Face model and processor
 model_name = "facebook/wav2vec2-base-960h"
@@ -24,10 +24,10 @@ model = Wav2Vec2ForCTC.from_pretrained(model_name)
 def transcribe_audio(file_path):
 
     # load
-    #aud = AudioSegment.converter
     audio = AudioSegment.from_file(file_path)
     #audio = aud.from_file(file_path)
-    wav_path = file_path.replace(".ogg", ".wav")
+    wav_path = file_path.rsplit(".", 1)[0] + ".wav"  #In order to accept any audio format
+    #wav_path = file_path.replace(".*", ".wav")
     audio.export(wav_path, format="wav")
     #waveform, rate = torchaudio.load(file_path)
 
