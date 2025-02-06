@@ -11,7 +11,7 @@ jobs:
 
     services:
       docker:
-        image: docker:19.03.12
+        image: docker:27.04.0
 
     steps:
     - name: Checkout code
