@@ -4,3 +4,4 @@ torch
 torchaudio
 pydub
 gunicorn
+python-decouple
