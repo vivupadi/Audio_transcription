@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-v)$e2uml@fw7bw&upgd@7ca8m)-d#xxbn%4(ftd-dpcztuo^b#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://audio-transcription-u91w.onrender.com']
 
 
 # Application definition
