@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost",
                  "127.0.0.1",
-                 "https://audio-transcription-u91w.onrender.com"]
+                 "audio-transcription-u91w.onrender.com"]
 
 
 # Application definition
