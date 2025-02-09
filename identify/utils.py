@@ -1,4 +1,5 @@
 import torch
+torch.set_num_threads(1)
 from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
 from pydub import AudioSegment
 from pydub.playback import play
