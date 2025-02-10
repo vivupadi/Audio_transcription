@@ -10,11 +10,12 @@ import soundfile as sf
 #import requests
 #from django.conf import settings
 
-if platform.system() == "Windows":
-    torchaudio.set_audio_backend("soundfile")  ##Soundfile WOrks for windows systems
-else:
+try:
     torchaudio.set_audio_backend("sox_io")
-    
+except Exception:
+    torchaudio.set_audio_backend("soundfile")   ##Soundfile WOrks for windows systems
+
+
 #mention FFMpeg path
 #AudioSegment.converter = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffmpeg.exe"
 #AudioSegment.ffprobe = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffprobe.exe"
