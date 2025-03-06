@@ -10,10 +10,10 @@ import soundfile as sf
 #import requests
 #from django.conf import settings
 
-try:
-    torchaudio.set_audio_backend("sox_io")
-except Exception:
-    torchaudio.set_audio_backend("soundfile")   ##Soundfile WOrks for windows systems
+#try:
+    #torchaudio.set_audio_backend("sox_io")
+#except Exception:
+torchaudio.set_audio_backend("soundfile")   ##Soundfile WOrks for windows systems
 
 
 #mention FFMpeg path
@@ -21,7 +21,7 @@ except Exception:
 #AudioSegment.ffprobe = r"C:\\Users\\Vivupadi\Downloads\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\ffmpeg-2024-11-18-git-970d57988d-essentials_build\\bin\\ffprobe.exe"
 
 # Load Hugging Face model and processor
-model_name = "facebook/wav2vec2-small"
+model_name = "facebook/wav2vec2-base-960h"
 processor = Wav2Vec2Processor.from_pretrained(model_name)
 model = Wav2Vec2ForCTC.from_pretrained(model_name)
 
