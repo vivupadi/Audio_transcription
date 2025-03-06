@@ -6,3 +6,4 @@ pydub
 gunicorn
 python-decouple
 soundfile
+sox_io
