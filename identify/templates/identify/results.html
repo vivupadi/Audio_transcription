@@ -1,0 +1,15 @@
+<!-- identify/result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transcription Result</title>
+</head>
+<body>
+    <h1>Transcription Result</h1>
+    {% if transcription %}
+        <p>{{ transcription }}</p>
+    {% else %}
+        <p>{{ status }}</p>
+    {% endif %}
+</body>
+</html>

@@ -132,3 +132,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Celery settings
+CELERY_BROKER_URL = 'redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Redis as the message broker
+CELERY_RESULT_BACKEND = 'redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Store task results in Redis
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'  # Use the same timezone as Django
