@@ -33,7 +33,7 @@ pipe = pipeline(
     tokenizer=processor.tokenizer,
     feature_extractor=processor.feature_extractor,
     torch_dtype=torch.float32,
-    device='cpu'
+    device=-1
 )
 
 #audio transcription
