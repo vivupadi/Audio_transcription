@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from decouple import config
 
+import redis
+
 #huggingface_api_key = config('hugging_face_api_key')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,8 +137,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Celery settings
-CELERY_BROKER_URL = 'redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Redis as the message broker
-CELERY_RESULT_BACKEND = 'redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Store task results in Redis
+"""CELERY_BROKER_URL = 'redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Redis as the message broker
+CELERY_RESULT_BACKEND = 'redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Store task results in Redis"""
+
+CELERY_BROKER_URL = 'redis://redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Redis as the message broker
+CELERY_RESULT_BACKEND = 'redis://redis-18943.c251.east-us-mz.azure.redns.redis-cloud.com:18943'  # Store task results in Redis
+
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

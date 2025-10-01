@@ -80,7 +80,7 @@ def transcribe_audio(file_path):
         return chunks
 
     # Initialize the pipeline
-    #pipe = pipeline("automatic-speech-recognition", model="openai/whisper-tiny", tokenizer="openai/whisper-tiny")
+    pipe = pipeline("automatic-speech-recognition", model="openai/whisper-tiny", tokenizer="openai/whisper-tiny")
 
     transcriptions = []
 
