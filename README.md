@@ -56,6 +56,10 @@ The audio file was resampled to 'Mono' channel & 16KHz. (Since most of the audio
 CI-CD implemented using Github actions.
 The APP is hosted on Render free tier.
 
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ⭐ Star this repo if you find it helpful!
 Made with ❤️ by Vivek Padayattil
